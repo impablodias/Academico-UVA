@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class PrecoVenda {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+
+        System.out.print("Digite o preço de custo do produto: R$ ");
+        double precoCusto = leitor.nextDouble();
+
+        System.out.print("Digite o percentual de acréscimo (ex: 25 para 25%): ");
+        double percentual = leitor.nextDouble();
+
+        double acrescimo = precoCusto * (percentual / 100);
+        double precoVenda = precoCusto + acrescimo;
+
+        System.out.println("\n--- Formação de Preço ---");
+        System.out.printf("Preço de Custo: R$ %.2f%n", precoCusto);
+        System.out.printf("Margem de Lucro: %.2f%%%n", percentual);
+        System.out.printf("Valor do Acréscimo: R$ %.2f%n", acrescimo);
+        System.out.printf("Preço Final de Venda: R$ %.2f%n", precoVenda);
+
+        leitor.close();
+    }
+}

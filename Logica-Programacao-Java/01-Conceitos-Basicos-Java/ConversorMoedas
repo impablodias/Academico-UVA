@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class ConversorMoeda {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+
+        System.out.print("Digite a cotação do dólar hoje (ex: 5.00): ");
+        double cotacao = leitor.nextDouble();
+
+        System.out.print("Digite a quantidade de dólares (US$) que você possui: ");
+        double qtdDolar = leitor.nextDouble();
+
+        double valorReal = qtdDolar * cotacao;
+
+        System.out.println("\n--- Resumo da Conversão ---");
+        System.out.printf("Valor em Dólar: US$ %.2f%n", qtdDolar);
+        System.out.printf("Cotação utilizada: R$ %.2f%n", cotacao);
+        System.out.printf("Total convertido: R$ %.2f%n", valorReal);
+
+        leitor.close();
+    }
+}

@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class ConversorTemperatura {
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+
+        System.out.print("Digite a temperatura (°C): ");
+        double celsius = leitor.nextDouble();
+
+        double fahrenheit = (9 * celsius + 160) / 5;
+
+        System.out.println("--- Resultado da Conversão ---");
+        System.out.printf("%.1f°C equivale a %.1f°F%n", celsius, fahrenheit);
+
+        leitor.close();
+    }
+}
