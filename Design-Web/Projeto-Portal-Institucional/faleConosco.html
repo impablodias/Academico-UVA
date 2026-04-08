@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Fale Conosco</title>
+</head>
+<body>
+    <h1 class="banner">Pablo Dias</h1>
+    <nav>
+        <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="faleConosco.html">Fale Conosco</a></li>
+        </ul>
+    </nav>
+    <h1 class="conosco">Fale Conosco</h1>
+    <form class="formulario" action="Cadastro.html" method="post" autocomplete="on">
+        <p class="form"> <label for="i_nome">Nome Completo:</label>
+            <br>
+            <input type="text" name="" id="i_nome
+            minlenght="3" maxlength="80" size="30" placeholder="digite seu nome aqui" required>
+        </p>
+        <p class="form"> <label for="i_email">E-mail:</label>
+            <br>
+            <input type="email" name="E-mail" id="i_email
+            minlenght="5" maxlength="100"" size="30" placeholder="digite seu e-mail aqui" required>
+        </p>
+        <p class="form"> Assunto: 
+            <select name="Assunto">
+            <option value="feedback">Feedback do Projeto</option>
+            <option value="duvida">Dúvida sobre o Código</option>
+            <option value="contato">Contato Acadêmico</option>
+            </select>
+        </p>
+        <p class="form"> <label for="i_menssagem">Menssagem:</label>
+            <br>
+            <textarea type="text" name="Menssagem" id="i_menssagem"
+            minlength="15" maxlength="1000" size="30" placeholder="sua mensagem aqui..." required> 
+            </textarea>
+        </p>
+        <p> 
+            <input type="submit" value="Enviar">
+            <input type="reset" value="Limpar">
+        </p>
+
+    </form>
+    
+</body>
+</html>

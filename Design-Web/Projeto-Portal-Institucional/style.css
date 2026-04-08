@@ -1,0 +1,145 @@
+@font-face {
+    font-family: "MinhaFonteBastore";
+    src:url("font/MinhaFonteBastore.ttf") format(truetype);
+}
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
+.banner {
+    font-family: 'MinhaFonteBastore', sans-serif;
+    font-size: 90px;
+    font-weight: 300;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    border: 1px solid;
+}
+
+nav li {
+    position: relative;
+    float: left;
+    border-radius: 1px solid;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+    padding: 6px 12px;
+    display: block;
+}
+
+nav a:hover {
+    background-color: black;
+    color: white;
+}
+
+.portais {
+    padding-top: 70px;
+    border-top: 30px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+}
+
+.card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 250px;
+    
+}
+
+.sobre {
+    text-align: center;
+    padding-top: 70px;
+    padding-bottom: 10px;
+}
+
+.sobremim {
+    max-width: 800px; 
+    margin: 30px auto; 
+    padding: 0 20px;
+    line-height: 1.8;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.skills ul {
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    padding: 5px;
+}
+
+.skills li {
+    background: #007bff;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.conosco {
+    padding-top: 70px;
+}
+
+.form {
+    padding: 20px 20px 0px 0px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+p textarea {
+    padding: 50px;
+}
+
+.sucesso{
+    text-align: center;
+    padding: auto;
+    background-color: rgb(18, 222, 45);
+    text-decoration: underline;
+    font-weight: bolder;
+}
+
+
+footer {
+    font-size: 12px;
+    text-align: center;
+    padding-top: 13px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-top: 1px solid;
+    margin-top: auto;
+}
