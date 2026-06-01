@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro Veículo</title>
+	<link rel="shortcut icon" th:href="@{/img/cadastro.ico}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link th:href="@{/css/estilo.css}" href="../static/css/estilo.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        
+        <header class="main-header border-bottom pb-3 mb-4">
+            <h1 class="h2">Sistema de Cadastro de Veículos</h1>
+        </header>
+        <div th:if="${mensagem}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong th:text="${mensagem}"></strong>
+        </div>
+        <div class="row">
+            <div class="col-md-5 mb-4">
+                <h3 class="h5 text-secondary mb-3">Cadastrar Novo Veículo</h3>
+                
+				<form th:action="@{/web/produtos/salvar}" th:object="${produto}" method="post" class="p-3 border rounded bg-light">
+				    <input type="hidden" th:field="*{id}">
+				    <div class="mb-3">
+				        <label for="modelo" class="form-label">Modelo de Veículo:</label>
+                        <input type="text" id="modelo" th:field="*{modelo}" class="form-control" placeholder="ex: Polo, Cronos, Civic... " required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="marca" class="form-label">Marca:</label>
+                        <input type="text" id="marca" th:field="*{marca}" class="form-control" placeholder="ex: Volkswagen, Fiat, Honda... " required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ano" class="form-label">Ano:</label>
+                        <input type="text" id="ano" th:field="*{ano}" class="form-control" placeholder="ex: 2012, 2018, 2026..." required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cor" class="form-label">Cor:</label>
+                        <input type="text" id="cor" th:field="*{cor}" class="form-control" placeholder="ex: prata, branco, preto..." required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Cadastrar no Banco</button>
+                </form>
+            </div>
+
+            <div class="col-md-7">
+                <h3 class="h5 text-secondary mb-3">Veículos Cadastrados</h3>
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-secondary text-center">
+                            <tr>
+                                <th style="width: 10%;">ID</th>
+                                <th>Modelo</th>
+                                <th>Marca</th>
+                                <th>Ano</th>
+                                <th>Cor</th>
+								<th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="p : ${listaP}">
+                                <td th:text="${p.id}" class="text-center fw-bold"></td>
+                                <td th:text="${p.modelo}"></td>
+                                <td th:text="${p.marca}"></td>
+                                <td th:text="${p.ano}"></td>
+                                <td th:text="${p.cor}"></td>
+								<td class="text-center">
+								            <a th:href="@{/web/produtos/editar/{id}(id=${p.id})}" class="btn btn-warning btn-sm">Editar</a>
+								            <a th:href="@{/web/produtos/excluir/{id}(id=${p.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este veículo?');">Excluir</a>
+								        </td>
+                            </tr>
+                            
+                            <tr th:if="${#lists.isEmpty(listaP)}">
+                                <td colspan="5" class="text-center text-muted py-3">
+                                    Nenhum veículo cadastrado ainda. Digite ao lado para testar!
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-5 pt-3 border-top text-center text-muted">
+            <p><small>&copy; 2026 - Sistema Desenvolvido para a Atividade de Backend</small></p>
+        </footer>
+    </div>
+
+</body>
+</html>

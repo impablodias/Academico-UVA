@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Vendas</title>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/favicon.png">
+    <link rel="stylesheet" href="Estilo.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <script src="Script.js"></script>
+</head>
+<body>
+    <div id="dialogErroData" title="Aviso" style="display: none;">
+        <p>Preencha a data da venda!</p>
+    </div>
+        <div class="caixa">
+            <H1>Controle de Vendas</H1>
+            <p>
+                <label for="dataVenda">Data da Venda:</label>
+                <input type="date" id="dataVenda" required>
+            </p>
+            <p>
+                <label for="nomeDoProduto">Nome do Produto:</label>
+                <input type="text" id="nomeDoProduto" required>
+            </p>
+            <p>
+                <label for="precoUnitario">Preço Unitário:</label>
+                <input type="number" id="precoUnitario" required>
+            </p>
+        
+            <p>
+                <label for="quantidadeVendida">Quantidade Vendida:</label>
+                <input type="number" id="quantidadeVendida" required>
+            </p>
+            <button type="submit" id="buttonCalcular">Calcular Total</button>
+        </div>
+
+    <div class="caixa" id="resultado">
+        <p>Data da Venda: <span id="resData"></span></p>
+        <p>Produto: <span id="resProduto"></span></p>
+        <p>Preço Unitário: R$ <span id="resPrecoUnitario"></span></p>
+        <p>Quantidade Vendida: <span id="resQuantidadeVendida"></span></p>
+        
+        <h3>Total da Venda: R$ <span id="resTotalDaVenda"></span></h3>
+    </div>
+
+    <footer>
+        <p>Desenvolvido por Pablo Tiago Machado Vaz Dias</p>
+        <p>Engenharia de Software - Universidade Veiga de Almeida (UVA) &copy; 2026</p>
+    </footer>
+</body>
+</html>
