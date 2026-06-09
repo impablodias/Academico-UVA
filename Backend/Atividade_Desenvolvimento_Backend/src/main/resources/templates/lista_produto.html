@@ -45,7 +45,6 @@
 
             <div class="col-md-7">
                 <h3 class="h5 text-secondary mb-3">Veículos Cadastrados</h3>
-                
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover align-middle">
                         <thead class="table-secondary text-center">
@@ -66,9 +65,9 @@
                                 <td th:text="${p.ano}"></td>
                                 <td th:text="${p.cor}"></td>
 								<td class="text-center">
-								            <a th:href="@{/web/produtos/editar/{id}(id=${p.id})}" class="btn btn-warning btn-sm">Editar</a>
-								            <a th:href="@{/web/produtos/excluir/{id}(id=${p.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este veículo?');">Excluir</a>
-								        </td>
+								        <a th:href="@{/web/produtos/editar/{id}(id=${p.id})}" class="btn btn-warning btn-sm">Editar</a>
+								        <a th:href="@{/web/produtos/excluir/{id}(id=${p.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este veículo?');">Excluir</a>
+								</td>
                             </tr>
                             
                             <tr th:if="${#lists.isEmpty(listaP)}">
