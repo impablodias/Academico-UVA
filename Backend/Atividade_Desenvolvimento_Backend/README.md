@@ -30,7 +30,7 @@ A aplicação cumpre com todos os requisitos operacionais de persistência de da
 A arquitetura do projeto foi totalmente "dockerizada" para garantir que a aplicação rode em qualquer máquina sem a necessidade de instalar o Java ou o PostgreSQL localmente.
 
 * **Isolamento de Containers:** O backend Java e o banco PostgreSQL rodam em containers separados utilizando imagens otimizadas.
-* **Docker Network:** Foi criada uma rede virtual explícita do tipo `bridge` chamada `frota-net`. Os containers comunicam-se de forma segura através de resolução de nomes de serviços internos, eliminando a dependência de IPs dinâmicos ou conexões expostas via `localhost`.
+* **Docker Network:** Foi criada uma rede virtual explícita do tipo `bridge` chamada `frota-net`. Os containers comunicam-se de forma segura através de resolução de nomes de serviços internos, eliminando a dependência de IPs dinâmicos.
 
 ---
 
@@ -38,9 +38,44 @@ A arquitetura do projeto foi totalmente "dockerizada" para garantir que a aplica
 
 ### Pré-requisitos
 * Possuir o **Docker** e o **Docker Compose** instalados na máquina.
+* *Opcional:* Maven instalado (caso deseje compilar o projeto manualmente fora do Docker).
 
-### Executando em Ambientes Windows (Atalho Próprio)
-Para facilitar o desenvolvimento, reconstrução e execução limpa do ambiente sem cache físico do Docker, foi desenvolvido um script automatizado na raiz. Basta abrir o terminal na pasta do projeto e executar:
-
+### 1. Gerando o .jar do projeto (Opcional)
+Se precisar compilar o projeto manualmente antes de criar a imagem, execute na raiz do projeto:
 ```bash
+mvn clean package -DskipTests
+
+### 2. Comandos Docker (Pelo Terminal)
+Para subir a infraestrutura completa (Banco de Dados + Aplicação Spring Boot), abra o terminal na pasta raiz e execute:
+Bash
+docker compose up --build -d
+
+Para derrubar os containers e parar a aplicação:
+Bash
+docker compose down
+
+### 3. Como reiniciar após alterações no código (Atalho Windows)
+Para facilitar o desenvolvimento, reconstrução e execução limpa do ambiente sem cache físico do Docker, desenvolvi um script automatizado na raiz. Basta dar dois cliques ou rodar no terminal:
+Bash
 .\recriar.bat
+
+Acesse no Navegador
+Com os containers rodando, a aplicação estará disponível na sua máquina local. Acesse o link abaixo no seu navegador:
+
+👉 http://localhost:8080/web/produtos
+
+Estrutura do Projeto e Containers
+O ambiente é orquestrado pelo docker-compose.yml contendo:
+
+Container db: Roda a imagem oficial do postgres:15, mapeado na porta 5432 com volumes persistentes para não perder os dados dos veículos.
+
+Container app: Roda o backend Spring Boot, construído através do meu Dockerfile, exposto na porta 8080 e dependente do container de banco de dados para iniciar.
+
+Ambas as aplicações se comunicam através da rede interna estática frota-net.
+
+👨‍💻 Desenvolvedor
+Projeto desenvolvido individualmente para a disciplina de Programação — UVA Tijuca (Engenharia de Software):
+
+Pablo Tiago Machado Vaz Dias (Matrícula: 1250119843)
+
+© 2026 Movvia - Painel Administrativo de Frotas
