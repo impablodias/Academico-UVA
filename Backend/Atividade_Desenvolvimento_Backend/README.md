@@ -27,7 +27,7 @@ A aplicação cumpre com todos os requisitos operacionais de persistência de da
 
 ## Infraestrutura Docker & Redes
 
-A arquitetura do projeto foi totalmente "dockerizada" para garantir que a aplicação rode em qualquer máquina sem a necessidade de instalar o Java ou o PostgreSQL localmente.
+A arquitetura do projeto foi totalmente para garantir que a aplicação rode em qualquer máquina sem a necessidade de instalar o Java ou o PostgreSQL localmente.
 
 * **Isolamento de Containers:** O backend Java e o banco PostgreSQL rodam em containers separados utilizando imagens otimizadas.
 * **Docker Network:** Foi criada uma rede virtual explícita do tipo `bridge` chamada `frota-net`. Os containers comunicam-se de forma segura através de resolução de nomes de serviços internos, eliminando a dependência de IPs dinâmicos.
@@ -83,7 +83,7 @@ Ambas as aplicações se comunicam através da rede interna `frota-net`.
 
 ---
 
-## 👨‍💻 Desenvolvedor
+## Desenvolvedor
 
 Projeto desenvolvido individualmente para a disciplina de Programação — UVA Tijuca (Engenharia de Software).
 
