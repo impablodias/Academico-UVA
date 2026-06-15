@@ -44,38 +44,52 @@ A arquitetura do projeto foi totalmente "dockerizada" para garantir que a aplica
 Se precisar compilar o projeto manualmente antes de criar a imagem, execute na raiz do projeto:
 ```bash
 mvn clean package -DskipTests
+```
 
 ### 2. Comandos Docker (Pelo Terminal)
 Para subir a infraestrutura completa (Banco de Dados + Aplicação Spring Boot), abra o terminal na pasta raiz e execute:
-Bash
+```Bash
 docker compose up --build -d
-
+```
 Para derrubar os containers e parar a aplicação:
-Bash
+```Bash
 docker compose down
+```
 
-### 3. Como reiniciar após alterações no código (Atalho Windows)
-Para facilitar o desenvolvimento, reconstrução e execução limpa do ambiente sem cache físico do Docker, desenvolvi um script automatizado na raiz. Basta dar dois cliques ou rodar no terminal:
-Bash
+### 3. Como reiniciar após alterações no código (Windows)
+
+Para facilitar o desenvolvimento, reconstrução e execução limpa do ambiente sem cache do Docker, utilize o script abaixo:
+
+```bash
 .\recriar.bat
+```
 
-Acesse no Navegador
-Com os containers rodando, a aplicação estará disponível na sua máquina local. Acesse o link abaixo no seu navegador:
+### Acesse no Navegador
 
-👉 http://localhost:8080/web/produtos
+Com os containers rodando, a aplicação estará disponível em:
 
-Estrutura do Projeto e Containers
-O ambiente é orquestrado pelo docker-compose.yml contendo:
+```text
+http://localhost:8080/web/produtos
+```
 
-Container db: Roda a imagem oficial do postgres:15, mapeado na porta 5432 com volumes persistentes para não perder os dados dos veículos.
+### Estrutura do Projeto e Containers
 
-Container app: Roda o backend Spring Boot, construído através do meu Dockerfile, exposto na porta 8080 e dependente do container de banco de dados para iniciar.
+O ambiente é orquestrado pelo `docker-compose.yml` contendo:
 
-Ambas as aplicações se comunicam através da rede interna estática frota-net.
+- **Container db:** Roda a imagem oficial do PostgreSQL 15, mapeada na porta 5432 com volumes persistentes.
+- **Container app:** Roda o backend Spring Boot construído através do Dockerfile e exposto na porta 8080.
 
-👨‍💻 Desenvolvedor
-Projeto desenvolvido individualmente para a disciplina de Programação — UVA Tijuca (Engenharia de Software):
+Ambas as aplicações se comunicam através da rede interna `frota-net`.
 
-Pablo Tiago Machado Vaz Dias (Matrícula: 1250119843)
+---
+
+## 👨‍💻 Desenvolvedor
+
+Projeto desenvolvido individualmente para a disciplina de Programação — UVA Tijuca (Engenharia de Software).
+
+**Pablo Tiago Machado Vaz Dias**  
+Matrícula: 1250119843
+
+---
 
 © 2026 Movvia - Painel Administrativo de Frotas
