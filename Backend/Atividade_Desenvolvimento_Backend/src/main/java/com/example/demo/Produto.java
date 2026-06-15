@@ -1,15 +1,13 @@
 package com.example.demo;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Produto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY) Tirei o controle automático do banco e fiz o Java calcular o ID na mão antes de salvar.
     private Long id;
     
     private String modelo;

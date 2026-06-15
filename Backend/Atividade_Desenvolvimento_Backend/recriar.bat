@@ -1,0 +1,9 @@
+@echo off
+echo [1/3] Derrubando os containers antigos...
+docker compose down
+
+echo [2/3] Reconstruindo as imagens do zero (sem cache)...
+docker compose build --no-cache
+
+echo [3/3] Subindo o sistema...
+docker compose up

@@ -1,31 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
 body {
-    background-color: #f8f9fa;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #f3f5f8 !important; 
 }
 
-.container {
-    background-color: #ffffff;
-    max-width: 1000px;
-    max-height: 780px;
-    width: 100%;
-    padding: 30px;
-    border-radius: 8px;
-    margin: 40px auto;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.navbar-custom {
+    background-color: #0f172a;
+    border-bottom: 3px solid #007bff;
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 
-.main-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.main-header h1 {
+.navbar-brand-title {
     font-weight: 700;
-    color: #212529;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
+    color: #ffffff !important;
 }
 
-footer {
-    font-size: 0.75rem;
-    color: #6c757d;
+.brand-highlight {
+    color: #007bff;
+}
+
+.custom-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
+
+.card-header-primary {
+    background: linear-gradient(135deg, #007bff, #0056b3); 
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 16px 20px;
+}
+
+.card-header-secondary {
+    background: linear-gradient(135deg, #334155, #1e293b);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 16px 20px;
+}
+
+.form-label {
+    font-size: 12px;
+    text-transform: uppercase;
     letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.form-control {
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0px 0px 0px 4px rgba(0, 123, 255, 0.15);
+}
+
+.btn-modern {
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.2s;
+}
+
+.btn-modern-primary {
+    background-color: #007bff;
+    border: none;
+    color: #ffffff;
+}
+
+.btn-modern-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+.table-custom th {
+    background-color: #f8fafc !important;
+    color: #64748b;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 14px 16px;
+}
+
+.table-custom td {
+    padding: 16px 16px;
+    font-size: 15px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.footer-custom {
+    background-color: #0f172a;
+    color: #94a3b8;
+    font-size: 14px;
+    border-top: 1px solid #1e293b;
 }

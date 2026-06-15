@@ -1,90 +1,176 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+    
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro Veículo</title>
-	<link rel="shortcut icon" th:href="@{/img/cadastro.ico}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movvia</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link th:href="@{/css/estilo.css}" href="../static/css/estilo.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+    <link rel="icon" th:href="@{/favicon/favicon.ico}" type="image/x-icon">
 </head>
-<body>
-    <div class="container">
-        
-        <header class="main-header border-bottom pb-3 mb-4">
-            <h1 class="h2">Sistema de Cadastro de Veículos</h1>
-        </header>
-        <div th:if="${mensagem}" class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong th:text="${mensagem}"></strong>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm mb-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="bi bi-car-front-fill text-primary me-2 fs-3"></i>
+                <span class="navbar-brand-title">MOV<span class="brand-highlight">VIA</span></span>
+            </a>
+            <span class="navbar-text text-white d-none d-md-inline fw-medium">
+                <i class="bi bi-shield-check text-success me-1"></i> Painel de Controle
+            </span>
         </div>
-        <div class="row">
-            <div class="col-md-5 mb-4">
-                <h3 class="h5 text-secondary mb-3">Cadastrar Novo Veículo</h3>
-                
-				<form th:action="@{/web/produtos/salvar}" th:object="${produto}" method="post" class="p-3 border rounded bg-light">
-				    <input type="hidden" th:field="*{id}">
-				    <div class="mb-3">
-				        <label for="modelo" class="form-label">Modelo de Veículo:</label>
-                        <input type="text" id="modelo" th:field="*{modelo}" class="form-control" placeholder="ex: Polo, Cronos, Civic... " required>
+    </nav>
+
+    <div class="container flex-grow-1">
+        
+        <div th:if="${mensagem}" class="alert alert-success alert-dismissible fade show custom-card border-0 mb-4 p-3" role="alert">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-success fs-4 me-3"></i>
+                <div>
+                    <strong class="d-block text-dark">Sucesso!</strong>
+                    <span class="text-secondary" th:text="${mensagem}"></span>
+                </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card custom-card">
+                    <div class="card-header-primary" 
+                        th:style="${produto.id != null ? 'background: linear-gradient(135deg, #ffc107, #d39e00) !important;' : ''}">
+                        <i th:class="${produto.id != null ? 'bi bi-pencil-square me-2' : 'bi bi-plus-lg me-2'}"></i>
+                        <span th:text="${produto.id != null ? 'Editar Veículo #' + produto.id : 'Cadastrar Veículo'}"></span>
                     </div>
-                    <div class="mb-3">
-                        <label for="marca" class="form-label">Marca:</label>
-                        <input type="text" id="marca" th:field="*{marca}" class="form-control" placeholder="ex: Volkswagen, Fiat, Honda... " required>
+                    
+                    <div class="card-body p-4 bg-white">
+                        <form th:action="@{/web/produtos/salvar}" th:object="${produto}" method="post">
+                            <input type="hidden" th:field="*{id}" />
+                            
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-secondary">Modelo</label>
+                                <input type="text" th:field="*{modelo}" class="form-control" placeholder="Ex: Onix" required
+                                        pattern="^[A-Za-z0-9À-ÿ\s\-\.]+$">
+                                <div class="invalid-feedback">
+                                    Por favor, insira um modelo válido (letras e números permitidos).
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-secondary">Marca</label>
+                                <input type="text" th:field="*{marca}" class="form-control" placeholder="Ex: Chevrolet" required
+                                        pattern="^[A-Za-zÀ-ÿ\s]+$">
+                                <div class="invalid-feedback">
+                                    A marca deve conter apenas letras e espaços (sem números ou símbolos).
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <label class="form-label fw-semibold text-secondary">Ano</label>
+                                    <input type="number" th:field="*{ano}" class="form-control" placeholder="2022" required
+                                            min="1900" max="2028" step="1">
+                                    <div class="invalid-feedback">
+                                        Ano inválido (insira entre 1900 e 2028).
+                                    </div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="form-label fw-semibold text-secondary">Cor</label>
+                                    <input type="text" th:field="*{cor}" class="form-control" placeholder="Branco" required
+                                            pattern="^[A-Za-zÀ-ÿ\s]+$">
+                                    <div class="invalid-feedback">
+                                        A cor deve conter apenas letras.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-modern w-100 mt-3 shadow-sm"
+                                    th:classappend="${produto.id != null ? 'btn-warning text-dark' : 'btn-modern-primary'}">
+                                <i th:class="${produto.id != null ? 'bi bi-pencil-square me-2' : 'bi bi-save me-2'}"></i>
+                                <span th:text="${produto.id != null ? 'Atualizar Registro' : 'Salvar Registro'}"></span>
+                            </button>
+                            
+                            <a th:if="${produto.id != null}" th:href="@{/web/produtos}" class="btn btn-outline-secondary w-100 mt-2">
+                                <i class="bi bi-x-circle me-1"></i> Cancelar Edição
+                            </a>
+                        </form>
                     </div>
-                    <div class="mb-3">
-                        <label for="ano" class="form-label">Ano:</label>
-                        <input type="text" id="ano" th:field="*{ano}" class="form-control" placeholder="ex: 2012, 2018, 2026..." required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cor" class="form-label">Cor:</label>
-                        <input type="text" id="cor" th:field="*{cor}" class="form-control" placeholder="ex: prata, branco, preto..." required>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Cadastrar no Banco</button>
-                </form>
+                </div>
             </div>
 
-            <div class="col-md-7">
-                <h3 class="h5 text-secondary mb-3">Veículos Cadastrados</h3>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover align-middle">
-                        <thead class="table-secondary text-center">
-                            <tr>
-                                <th style="width: 10%;">ID</th>
-                                <th>Modelo</th>
-                                <th>Marca</th>
-                                <th>Ano</th>
-                                <th>Cor</th>
-								<th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="p : ${listaP}">
-                                <td th:text="${p.id}" class="text-center fw-bold"></td>
-                                <td th:text="${p.modelo}"></td>
-                                <td th:text="${p.marca}"></td>
-                                <td th:text="${p.ano}"></td>
-                                <td th:text="${p.cor}"></td>
-								<td class="text-center">
-								        <a th:href="@{/web/produtos/editar/{id}(id=${p.id})}" class="btn btn-warning btn-sm">Editar</a>
-								        <a th:href="@{/web/produtos/excluir/{id}(id=${p.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este veículo?');">Excluir</a>
-								</td>
-                            </tr>
-                            
-                            <tr th:if="${#lists.isEmpty(listaP)}">
-                                <td colspan="5" class="text-center text-muted py-3">
-                                    Nenhum veículo cadastrado ainda. Digite ao lado para testar!
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="col-lg-8">
+                <div class="card custom-card">
+                    <div class="card-header-secondary">
+                        <i class="bi bi-list-ul me-2"></i> Veículos Cadastrados
+                    </div>
+                    <div class="card-body p-0 bg-white">
+                        <div class="table-responsive">
+                            <table class="table table-custom table-hover align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 10%">N°</th>
+                                        <th style="width: 25%">Modelo</th>
+                                        <th style="width: 25%">Marca</th>
+                                        <th style="width: 15%">Ano</th>
+                                        <th style="width: 15%">Cor</th>
+                                        <th class="text-center" style="width: 10%">Opções</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="p : ${listaP}">
+                                        <td th:text="${p.id}" class="text-center fw-bold text-muted"></td>
+                                        <td th:text="${p.modelo}" class="fw-bold text-dark"></td>
+                                        <td th:text="${p.marca}"></td>
+                                        <td th:text="${p.ano}"></td>
+                                        <td th:text="${p.cor}"></td>
+                                        <td class="text-center">
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <a th:href="@{/web/produtos/editar/{id}(id=${p.id})}" class="btn btn-outline-warning" title="Editar">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </a>
+                                                <a th:href="@{/web/produtos/excluir/{id}(id=${p.id})}" class="btn btn-outline-danger" title="Excluir"
+                                                    onclick="return confirm('Tem certeza que deseja remover este veículo?')">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <footer class="mt-5 pt-3 border-top text-center text-muted">
-            <p><small>&copy; 2026 - Sistema Desenvolvido para a Atividade de Backend</small></p>
-        </footer>
     </div>
 
+    <footer class="bg-white text-center text-muted py-3 mt-auto border-top">
+        <div class="container">
+            <small>&copy; 2026 Movvia. • Desenvolvedor:Pablo Tiago • UVA Tijuca - Engenharia de Software</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        (() => {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
 </body>
 </html>

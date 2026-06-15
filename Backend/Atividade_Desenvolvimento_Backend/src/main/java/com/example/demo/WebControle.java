@@ -25,10 +25,24 @@ public class WebControle {
 
     @PostMapping("/web/produtos/salvar")
     public String salvarVeiculo(Produto produto, RedirectAttributes attributes) {
-        produtoDAO.save(produto);
-        attributes.addFlashAttribute("mensagem", "Veículo salvo com sucesso!");
-        return "redirect:/web/produtos";
+    if (produto.getId() == null) {
+        Long proximoId = 1L;
+        java.util.List<Produto> todos = produtoDAO.findAll();
+        
+        if (!todos.isEmpty()) {
+            Long maxId = todos.stream()
+                .mapToLong(Produto::getId)
+                .max()
+                .getAsLong();
+            proximoId = maxId + 1;
+        }
+        produto.setId(proximoId);
     }
+    
+    produtoDAO.save(produto);
+    attributes.addFlashAttribute("mensagem", "Veículo salvo com sucesso!");
+    return "redirect:/web/produtos";
+}
 
     @GetMapping("/web/produtos/excluir/{id}")
     public String excluirVeiculo(@PathVariable Long id, RedirectAttributes attributes) {
